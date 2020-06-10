@@ -36,7 +36,7 @@ driver.find_element_by_name("username").send_keys(meta_id)
 driver.find_element_by_name("password").send_keys(meta_password)
 driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button").click()
 
-t.sleep(2)
+t.sleep(3)
 driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div/div/div/button").click()
 
 # 데이터 전송 기다릴 것 / 특히 한글일 경우
@@ -69,7 +69,7 @@ while 1:
     if not overflow_status:
         break
 
-n = 1 # 증감 연산자
+n = 0 # 증감 연산자
 for i in meta_data:
     with urlopen(i) as f:
         with open('./save_image/' + plus_url + str(n) + '.jpg', 'wb') as h:

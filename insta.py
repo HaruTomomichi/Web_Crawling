@@ -40,11 +40,12 @@ driver.find_element_by_name("password").send_keys(meta_password)
 
 try:
     driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button").click()
+
+    t.sleep(3)
+    driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div/div/div/button").click()
 except:
     driver.find_element_by_xpath("/html/body/div[5]/div[2]/div/div[2]/div/div/div[1]/div/form/div[4]/button").click()
-
-t.sleep(2)
-driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div/div/div/button").click()
+    driver.get(url)
 
 # 데이터 전송 기다릴 것 / 특히 한글일 경우
 
@@ -52,54 +53,74 @@ t.sleep(5)
 driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a").click()
 
 while 1:
-    t.sleep(1)
+    t.sleep(2)
+
+    if len(like_meta_data) == limit_num:
+        break
 
     html = driver.page_source
     soup = BeautifulSoup(html,"html.parser")
 
     # 좋아요 추출
 
-    like_num = soup.select(".sqdOP.yWX7d._8A5w5")
+    temp = soup.select(".Igw0E.IwRSH.eGOV_.ybXk5.vwCYk")
 
-    if like_num == []:
-        driver.find_element_by_class_name("coreSpriteRightChevron").click()
+    if not temp:
+        driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
+        continue
 
-    print(like_num[1].select('span'))
-    like_num = like_num[1].select('span')
+    temp = temp[0].select('span')
 
-    like_meta_data.append(int(like_num[0].text))
-    print(like_meta_data)
-
+    if len(temp) == 2:
+        like_meta_data.append(int(temp[1].text))
+    else:
+        like_meta_data.append(int(temp[0].text))
 
     # 이미지 추출
 
-    imgUrl = soup.select_one('.KL4Bh').img['src']
+    print(meta_data,"\n",like_meta_data)
+    driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
 
-    print(imgUrl)
+t.sleep(5)
+body = driver.find_element_by_css_selector("body")
 
-    if imgUrl in meta_data:
-        continue
+while 1:
+    print(meta_data, "\n", like_meta_data)
 
-    meta_data.append(imgUrl)
+    body.send_keys(Keys.END)
+    t.sleep(1)
 
-    #
+    html = driver.page_source
+    soup = BeautifulSoup(html,"html.parser")
 
+    insta = soup.select('.v1Nh3.kIKUG._bz0w') # 클래스가 3개일 경우에는 점으로 구분
 
+    for i in insta:
+        print('https://www.instagram.com/' + i.a['href'])
+        imgUrl = i.select_one('.KL4Bh').img['src']
 
-    if len(meta_data) == limit_num:
-        overflow_status = False
+        if imgUrl in meta_data: # 중복 링크일 경우 삭제
+            continue
+
+        meta_data.append(imgUrl)
+
+        if len(meta_data) == limit_num:
+            overflow_status = False
+            break
+
+    if not overflow_status:
         break
 
-    driver.find_element_by_class_name("coreSpriteRightChevron").click()
+for i in range(len(like_meta_data)):
+    for j in range(len(like_meta_data)):
+        if like_meta_data[i] > like_meta_data[j]:
+            like_meta_data[i],like_meta_data[j] = like_meta_data[j],like_meta_data[i]
+            meta_data[i],meta_data[j] = meta_data[j],meta_data[i]
 
-
-
-
-
-n = 1 # 증감 연산자
+n = 0 # 증감 연산자
 for i in meta_data:
     with urlopen(i) as f:
-        with open('./save_image/' + plus_url + str(n) + '.jpg', 'wb') as h:
+        with open('./save_image/' + plus_url + "_" + str(n) + "_" + str(like_meta_data[n]) + "의 좋아요" + '.jpg', 'wb') as h:
             img = f.read()
             h.write(img)
     print(n,"번째 이미지 다운로드 완료\n")

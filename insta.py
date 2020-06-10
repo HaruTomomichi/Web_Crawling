@@ -37,7 +37,11 @@ driver.find_element_by_xpath("//*[@id='react-root']/section/nav/div[2]/div/div/d
 t.sleep(2)
 driver.find_element_by_name("username").send_keys(meta_id)
 driver.find_element_by_name("password").send_keys(meta_password)
-driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button").click()
+
+try:
+    driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button").click()
+except:
+    driver.find_element_by_xpath("/html/body/div[5]/div[2]/div/div[2]/div/div/div[1]/div/form/div[4]/button").click()
 
 t.sleep(2)
 driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div/div/div/button").click()
@@ -53,6 +57,22 @@ while 1:
     html = driver.page_source
     soup = BeautifulSoup(html,"html.parser")
 
+    # 좋아요 추출
+
+    like_num = soup.select(".sqdOP.yWX7d._8A5w5")
+
+    if like_num == []:
+        driver.find_element_by_class_name("coreSpriteRightChevron").click()
+
+    print(like_num[1].select('span'))
+    like_num = like_num[1].select('span')
+
+    like_meta_data.append(int(like_num[0].text))
+    print(like_meta_data)
+
+
+    # 이미지 추출
+
     imgUrl = soup.select_one('.KL4Bh').img['src']
 
     print(imgUrl)
@@ -64,25 +84,13 @@ while 1:
 
     #
 
-    like_num = soup.select("Nm9Fw").select(".sqdOP.yWX7d._8A5w5")
-    print(like_num)
-    like_num = like_num.select(".sqdOP.yWX7d._8A5w5")
-    print(like_num)
+
 
     if len(meta_data) == limit_num:
         overflow_status = False
         break
 
-
-
-
-
-
-
-
-
-
-
+    driver.find_element_by_class_name("coreSpriteRightChevron").click()
 
 
 

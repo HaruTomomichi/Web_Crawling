@@ -45,48 +45,35 @@ driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div/div/div
 # 데이터 전송 기다릴 것 / 특히 한글일 경우
 
 t.sleep(5)
-driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a").click()
+body = driver.find_element_by_css_selector("body")
 
 while 1:
+    body.send_keys(Keys.END)
     t.sleep(1)
 
     html = driver.page_source
     soup = BeautifulSoup(html,"html.parser")
 
-    imgUrl = soup.select_one('.KL4Bh').img['src']
+    insta = soup.select('.v1Nh3.kIKUG._bz0w') # 클래스가 3개일 경우에는 점으로 구분
 
-    print(imgUrl)
+    for i in insta:
+        print('https://www.instagram.com/' + i.a['href'])
+        imgUrl = i.select_one('.KL4Bh').img['src']
 
-    if imgUrl in meta_data:
-        continue
+        if imgUrl in meta_data:
+            continue
 
-    meta_data.append(imgUrl)
+        link = driver.find_element_by_class_name(".v1Nh3.kIKUG._bz0w")
+        webdriver.ActionChains(driver).move_to_element(link).click()
 
-    #
+        meta_data.append(imgUrl)
 
-    like_num = soup.select("Nm9Fw").select(".sqdOP.yWX7d._8A5w5")
-    print(like_num)
-    like_num = like_num.select(".sqdOP.yWX7d._8A5w5")
-    print(like_num)
+        if len(meta_data) == limit_num:
+            overflow_status = False
+            break
 
-    if len(meta_data) == limit_num:
-        overflow_status = False
+    if not overflow_status:
         break
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 n = 1 # 증감 연산자
 for i in meta_data:

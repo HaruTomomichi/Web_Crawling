@@ -66,6 +66,7 @@ while 1:
     temp = soup.select(".Igw0E.IwRSH.eGOV_.ybXk5.vwCYk")
 
     if not temp:
+        like_meta_data.append(0)
         driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
         continue
 
@@ -81,14 +82,13 @@ while 1:
     print(meta_data,"\n",like_meta_data)
     driver.find_element_by_class_name("coreSpriteRightPaginationArrow").click()
 
+driver.find_element_by_xpath("/html/body/div[4]/div[3]/button").click()
+
 t.sleep(5)
 body = driver.find_element_by_css_selector("body")
 
 while 1:
     print(meta_data, "\n", like_meta_data)
-
-    body.send_keys(Keys.END)
-    t.sleep(1)
 
     html = driver.page_source
     soup = BeautifulSoup(html,"html.parser")
@@ -111,19 +111,22 @@ while 1:
     if not overflow_status:
         break
 
+    body.send_keys(Keys.END)
+    t.sleep(1)
+
 for i in range(len(like_meta_data)):
     for j in range(len(like_meta_data)):
-        if like_meta_data[i] > like_meta_data[j]:
+        if like_meta_data[i] < like_meta_data[j] and i < j:
             like_meta_data[i],like_meta_data[j] = like_meta_data[j],like_meta_data[i]
             meta_data[i],meta_data[j] = meta_data[j],meta_data[i]
 
 n = 0 # 증감 연산자
 for i in meta_data:
     with urlopen(i) as f:
-        with open('./save_image/' + plus_url + "_" + str(n) + "_" + str(like_meta_data[n]) + "의 좋아요" + '.jpg', 'wb') as h:
+        with open('./save_image/' + plus_url + "_" + str(n+1) + "_" + str(like_meta_data[n]) + "의 좋아요" + '.jpg', 'wb') as h:
             img = f.read()
             h.write(img)
-    print(n,"번째 이미지 다운로드 완료\n")
+    print(n+1,"번째 이미지 다운로드 완료\n")
     n += 1
 
 t.sleep(5)

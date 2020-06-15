@@ -45,8 +45,6 @@ t.sleep(5)
 body = driver.find_element_by_css_selector("body")
 
 while 1:
-    body.send_keys(Keys.END)
-    t.sleep(1)
 
     html = driver.page_source
     soup = BeautifulSoup(html,"html.parser")
@@ -68,6 +66,9 @@ while 1:
 
     if not overflow_status:
         break
+
+    body.send_keys(Keys.END)
+    t.sleep(1)
 
 n = 0 # 증감 연산자
 for i in meta_data:

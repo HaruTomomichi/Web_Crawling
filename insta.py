@@ -11,7 +11,7 @@ meta_id = "01041560286"
 meta_password = "asrock6601"
 
 base_url = "https://www.instagram.com/"
-plus_url = input("검색할 아이디를 입력하세요 : ")
+plus_url = input("사용자의 아이디를 입력하세요 : ")
 limit_num = int(input("저장할 이미지의 수를 입력하세요 : "))
 
 url = base_url + quote_plus(plus_url) # 검색어를 아스키 코드로 변환
@@ -41,7 +41,7 @@ driver.find_element_by_name("password").send_keys(meta_password)
 try:
     driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/article/div/div[1]/div/form/div[4]/button").click()
 
-    t.sleep(3)
+    t.sleep(5)
     driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div/div/div/button").click()
 except:
     driver.find_element_by_xpath("/html/body/div[5]/div[2]/div/div[2]/div/div/div[1]/div/form/div[4]/button").click()
@@ -50,7 +50,11 @@ except:
 # 데이터 전송 기다릴 것 / 특히 한글일 경우
 
 t.sleep(5)
-driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a").click()
+try:
+    driver.find_element_by_xpath(
+        "//*[@id='react-root']/section/main/div/div[3]/article/div[1]/div/div[1]/div[1]/a").click()
+except:
+    driver.find_element_by_xpath("//*[@id='react-root']/section/main/div/div[2]/article/div[1]/div/div[1]/div[1]/a").click()
 
 while 1:
     t.sleep(2)
@@ -73,7 +77,7 @@ while 1:
     temp = temp[0].select('span')
 
     if len(temp) == 2:
-        like_meta_data.append(int(temp[1].text))
+        like_meta_data.append(int(temp[1].text)+1)
     else:
         like_meta_data.append(int(temp[0].text))
 

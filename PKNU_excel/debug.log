@@ -7,3 +7,10 @@
 [0914/165151.058:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [0914/165243.098:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
 [0914/170730.723:ERROR:prune_crash_reports.cc(36)] PruneCrashReportDatabase: Failed to get pending reports
+[0915/090813.859:ERROR:process_reader_win.cc(127)] NtOpenThread: {액세스 거부} 프로세스가 개체에 액세스를 요구했지만 액세스 권한이 없습니다. (0xc0000022)
+[0915/090813.859:ERROR:exception_snapshot_win.cc(100)] thread ID 13340 not found in process
+[0915/090813.859:ERROR:file_io_win.cc(162)] CreateFile C:\Users\wlsrk\AppData\Local\Temp\scoped_dir2948_2120676393\Crashpad\settings.dat: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0915/090813.859:ERROR:file_io_win.cc(162)] CreateFile C:\Users\wlsrk\AppData\Local\Temp\scoped_dir2948_2120676393\Crashpad\settings.dat: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0915/090813.859:ERROR:file_io_win.cc(162)] CreateFile C:\Users\wlsrk\AppData\Local\Temp\scoped_dir2948_2120676393\Crashpad\settings.dat: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0915/090813.859:ERROR:file_io_win.cc(171)] CreateFile C:\Users\wlsrk\AppData\Local\Temp\scoped_dir2948_2120676393\Crashpad\reports\8e217f39-c5e7-4ef8-a0d1-94d61c4e2df7.dmp: 지정된 경로를 찾을 수 없습니다. (0x3)
+[0915/090813.859:ERROR:crash_report_exception_handler.cc(120)] PrepareNewCrashReport failed

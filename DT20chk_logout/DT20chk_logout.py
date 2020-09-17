@@ -1,5 +1,6 @@
 import sys
 import schedule
+import pandas as pd
 
 from time import sleep
 from selenium import webdriver
@@ -8,20 +9,46 @@ from datetime import datetime
 class WEBSYSTEM:
 
     def __init__(self):
-        self.ID = input('아이디를 입력해주세요 : ')
-        self.password = input('\n패스워드를 입력해주세요 : ')
-        self.content = input('\n오늘 업무 내용을 입력해주세요 (최대 50자) : ')[:50]
-        self.name = input('\n성함을 입력해주세요 : ')
+        self.ID = "기본"
+        self.password = "기본"
+        self.name = "홍길동"
+        self.content = "기본"
         self.big_div, self.small_div = ['3', '2']
-
-        WEBSYSTEM.one_more_chk(self)
         self.url = 'http://dt20chk.hyosungitx.com/main'
         self.driver = webdriver.Chrome(
             executable_path="webdriver/chromedriver.exe"
         )
 
+    def ready_for_act(self):
+        self.one_more_chk()
+        self.two_more_chk()
+        self.third_more_chk()
+
     def one_more_chk(self):
-        print("*" * 50 + "\nid = ", self.ID)
+
+        try:
+            read_data = pd.read_csv('./Login_data.csv',index_col=0)
+            self.ID = read_data['ID'].iloc[0]
+            self.password = read_data['PASSWORD'].iloc[0]
+            self.name = read_data['NAME'].iloc[0]
+            print("로그인 정보를 확인하는데 성공하였습니다!")
+
+        except FileNotFoundError:
+            print("로그인 정보를 확인하는데 실패하였습니다...\n\n로그인 정보를 저장하겠습니다...\n")
+            self.ID = input('아이디를 입력해주세요 : ')
+            self.password = input('\n패스워드를 입력해주세요 : ')
+            self.name = input('\n본인 성함을 입력해주세요 : ')
+
+            save_data = {'ID':self.ID,'PASSWORD':self.password,'NAME':self.name}
+            save_data = pd.DataFrame(save_data,index=[0])
+            save_data.to_csv('Login_data.csv',encoding='utf-8-sig')
+            print('\n로그인 정보를 저장하는 데에 성공하였습니다!')
+
+    def two_more_chk(self):
+        self.content = input("*" * 50 + '\n오늘 업무 내용을 입력해주세요 (최대 50자) : ')
+
+    def third_more_chk(self):
+        print("*" * 50 + "\nID = ", self.ID)
         print("\npassword = ", self.password)
         print("\n업무 내용 = ", self.content)
         print("\n성함 = ", self.name)
@@ -43,11 +70,6 @@ class WEBSYSTEM:
         self.second_off_work()
         self.end_off_work()
 
-    def login(self):
-        self.driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
-        self.driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
-        self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-
     def zero_off_work(self):
         self.driver.get(self.url)
 
@@ -59,6 +81,11 @@ class WEBSYSTEM:
             sleep(2)
             WEBSYSTEM.login(self)
             sleep(2)
+
+    def login(self):
+        self.driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
+        self.driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
+        self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
 
     def first_off_work(self):
         self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
@@ -87,8 +114,9 @@ class WEBSYSTEM:
 
 
 if __name__ == '__main__':
-    print("*" * 50 + "\n공공데이터 청년 인턴십 세무과 자동 퇴근 시스템 v0.3 (0.2 → 0.3)\n" + "*" * 50)
+    print("*" * 50 + "\n공공데이터 청년 인턴십 세무과 자동 퇴근 시스템 v0.4 (0.2 → 0.3 → 0.4)\n" + "*" * 50)
     person = WEBSYSTEM()
+    person.ready_for_act()
     schedule.every().day.at('18:00').do(person.total_off_work)
 
     while True:

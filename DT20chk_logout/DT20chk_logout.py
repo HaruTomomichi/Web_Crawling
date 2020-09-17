@@ -1,6 +1,6 @@
 import sys
-
 import schedule
+
 from time import sleep
 from selenium import webdriver
 from datetime import datetime
@@ -85,15 +85,21 @@ class WEBSYSTEM:
         sleep(2)
         sys.exit()
 
+
 if __name__ == '__main__':
     print("*" * 50 + "\n공공데이터 청년 인턴십 세무과 자동 퇴근 시스템 v0.3 (0.2 → 0.3)\n" + "*" * 50)
     person = WEBSYSTEM()
     schedule.every().day.at('18:00').do(person.total_off_work)
 
     while True:
-        print("\n시간을 체크하고 있습니다... 현재 시간 : ",datetime.now())
+        print("\n시간을 체크하고 있습니다... 현재 시간 : ", datetime.now())
         schedule.run_pending()
         sleep(1)
+
+# 향후 해야할 일
+# 로그인 시스템 구현
+# 분류 체계 접근 및 이용
+# 실측 체계 할 수 있도록 구현
 
 # big_div = input('업무 중분류 체계 코드를 입력해주세요 (ex: 2) : ')
 # small_div = input('업무 소분류 체계 코드를 입력해주세요 (ex: 2) : ')

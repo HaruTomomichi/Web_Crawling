@@ -57,15 +57,14 @@ class WEBSYSTEM:
     def third_more_chk(self):
         print("*" * 50 + "\nID : ", self.ID)
         print("\npassword : ", self.password)
-        print("\n업무 내용 : ", self.content)
         print("\n성함 : ", self.name)
         WEBSYSTEM.print_work_code(self)
+        print("\n업무 내용 : ", self.content)
 
         answer = input("\n입력하신 내용이 다음과 같습니까? (y/n) : ")
 
         if answer == 'y':
-            print("*" * 50 + "\n업무 중분류 체계 - 공공데이터 보유현황 정리 및 메타데이터 등록")
-            print("\n업무 소분류 체계 - 기타")
+            print("*" * 50 + '\n확인을 완료하였습니다! 오후 6시에 작업을 시작합니다...')
         else:
             print("*" * 50 + "\n프로그램을 종료합니다 다시 실행시켜 주십시오")
             sleep(2)
@@ -81,9 +80,7 @@ class WEBSYSTEM:
         else:
             print("\n업무 중분류 코드 : 공공데이터 보유현황 정리 및 메타데이터 등록")  # DR0011
 
-
-
-
+        print("\n업무 소분류 코드 : 기타")
 
     def total_off_work(self):
         print("\n가상 페이지를 생성합니다...")

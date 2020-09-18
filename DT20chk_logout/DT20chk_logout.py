@@ -39,7 +39,6 @@ class WEBSYSTEM:
             print('\n로그인 정보를 저장하는 데에 성공하였습니다!')
 
     def two_more_chk(self):
-
         print("*" * 50 + '\n업무 중분류 체계는 다음과 같습니다')
         print("\n - 공공데이터포털 목록등록체계 및 메타정보 점검 : 2") # DR0010
         print("\n - 공공데이터 보유현황 정리 및 메타데이터 등록 : 3") # DR0011
@@ -143,6 +142,7 @@ class WEBSYSTEM:
 
 if __name__ == '__main__':
     print("*" * 50 + "\n공공데이터 청년 인턴십 자동 퇴근 시스템 v0.4 (0.2 → 0.3 → 0.4)\n" + "*" * 50)
+
     person = WEBSYSTEM()
     person.ready_for_act()
     schedule.every().day.at('18:00').do(person.total_off_work)
@@ -155,6 +155,7 @@ if __name__ == '__main__':
 # 향후 해야할 일
 # 분류 체계 접근 및 이용
 # 실측 체계 할 수 있도록 구현
+# small_div 값 변경할 수 있도록
 
         # if self.big_div == '2':
         #     print("*" * 50 + '\n해당 업무 소분류 체계는 다음과 같습니다')

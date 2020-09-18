@@ -142,6 +142,8 @@ class WEBSYSTEM:
 
 if __name__ == '__main__':
     print("*" * 50 + "\n공공데이터 청년 인턴십 자동 퇴근 시스템 v0.4 (0.2 → 0.3 → 0.4)\n" + "*" * 50)
+    print(" - 만든이 : 부산 남구청\n")
+    print("Special Thanks to 부산 세무과 여러분")
 
     person = WEBSYSTEM()
     person.ready_for_act()

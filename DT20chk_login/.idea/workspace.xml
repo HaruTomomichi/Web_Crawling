@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="678958f1-c237-43c3-87fc-de4039b480e2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/Analysis-00.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/COLLECT-00.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/DT20chk_login.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/DT20chk_login.exe.manifest" beforeDir="false" afterPath="$PROJECT_DIR$/build/DT20chk_login/DT20chk_login.exe.manifest" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/EXE-00.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/PKG-00.pkg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/PKG-00.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/PYZ-00.pyz" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/PYZ-00.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/Tree-00.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/Tree-01.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/warn-DT20chk_login.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/DT20chk_login/xref-DT20chk_login.html" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1hfA2tUGXSsGCpdaBFEorZQQVds" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="678958f1-c237-43c3-87fc-de4039b480e2" name="Default Changelist" comment="" />
+      <created>1600391569842</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1600391569842</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+</project>

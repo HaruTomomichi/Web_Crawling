@@ -3,6 +3,8 @@ from sys import exit
 from time import sleep
 from selenium import webdriver
 
+# 각 코로나 검사 항목과 일치하는 지 여부 검사
+
 class WEBSYSTEM:
     def __init__(self):
         self.ID = "기본"
@@ -57,45 +59,53 @@ class WEBSYSTEM:
         driver.get(url)
 
         # zero_on_work
-
         try:
             self.login(driver)
-            sleep(2)
+            sleep(5)
         except:
             driver.find_element_by_xpath('/html/body/div[3]/button').click()
-            sleep(2)
+            sleep(5)
             self.login(driver)
-            sleep(2)
+            sleep(5)
 
         # first_on_work
-
-        driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
-        driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
-        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-        sleep(2)
+        try:
+            driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
+            driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
+            driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+            sleep(5)
+        except:
+            pass
 
         # second_on_work
-
-        driver.find_element_by_xpath('//*[@id="chkAgree1"]').click()
-        driver.find_element_by_xpath('//*[@id="chkAgree2"]').click()
+        driver.find_element_by_xpath('//*[@id="js-page-content"]/div/div[1]/div/label').click()
+        driver.find_element_by_xpath('//*[@id="js-page-content"]/div/div[2]/div/label').click()
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-        sleep(2)
+        sleep(5)
 
-        # third_on_work
+        # 현재 윗 단계에서 오류 발생생
 
-        driver.find_element_by_xpath('//*[@id="rdSurvey13"]').click()
-        driver.find_element_by_xpath('//*[@id="chkSurvey10"]').click()
-        driver.find_element_by_xpath('//*[@id="rdSurvey33"]').click()
-        driver.find_element_by_xpath('//*[@id="rdSurvey42"]').click()
+        # thid_on_work
+        if driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label/text()') == '':
+            driver.find_element_by_xpath('//*[@id="rdSurvey13"]').click()
+
+        if driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label/text()') == '':
+            driver.find_element_by_xpath('//*[@id="chkSurvey10"]').click()
+
+        if driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label/text()') == '':
+            driver.find_element_by_xpath('//*[@id="rdSurvey33"]').click()
+
+        if driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label/text()') == '':
+            driver.find_element_by_xpath('//*[@id="rdSurvey42"]').click()
+
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-        sleep(2)
+        sleep(5)
 
         # end_off_work
-
         driver.close()
         print("*" * 50 + "\n성공적으로 작업이 완료되었습니다")
-        print("\n2초 뒤에 프로그램을 종료합니다")
-        sleep(2)
+        print("\n5초 뒤에 프로그램을 종료합니다")
+        sleep(5)
 
         exit()
 

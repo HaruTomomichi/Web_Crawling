@@ -12,7 +12,7 @@ class WEBSYSTEM:
         self.password = "기본"
         self.name = "홍길동"
         self.content = "기본"
-        self.big_div, self.small_div = ['3', '2']
+        self.big_div, self.small_div = ['3', '4']
 
     def ready_for_act(self):
         self.one_more_chk()
@@ -47,6 +47,7 @@ class WEBSYSTEM:
         self.big_div = str(input('\n업무 중분류 체계 코드를 입력해주세요 (ex: 2) : '))
 
         if self.big_div != '2' and self.big_div != '3' and self.big_div != '4' and self.big_div != '6':
+            self.big_div = '3'
             print("*" * 50 + '\n업무 중분류 코드 입력 오류입니다! 기본값으로 진행하겠습니다...')
             print('\n - 업무 중분류 체계 : 공공데이터 보유현황 정리 및 메타데이터 등록')
             print('\n - 업무 소분류 체계 : 기타')
@@ -63,19 +64,25 @@ class WEBSYSTEM:
         answer = input("\n입력하신 내용이 다음과 같습니까? (y/n) : ")
 
         if answer == 'y':
-            print("*" * 50 + '\n확인을 완료하였습니다! 오후 6시에 작업을 시작합니다...')
+            print("*" * 50 + '\n확인을 완료하였습니다! 오후 5시 59분 55초에 작업을 시작합니다...')
         else:
-            print("*" * 50 + "\n프로그램을 종료합니다 다시 실행시켜 주십시오")
+            print("*" * 50 + "\n오류입니다 다시 한번 정보를 확인해주십시오!\n\n프로그램을 종료합니다 다시 실행시켜 주십시오")
             sleep(2)
             sys.exit()
 
     def print_work_code(self):
         if self.big_div == '2':
             print("\n업무 중분류 코드 : 공공데이터포털 목록등록체계 및 메타정보 점검") # DR0010
+            self.small_div = '9'
+
         elif self.big_div == '4':
             print("\n업무 중분류 코드 : 공공데이터 목록 구성 및 개방") # DR0012
+            self.small_div = '6'
+
         elif self.big_div == '6':
             print("\n업무 중분류 코드 : 기관자체 개방포털 및 개방데이터 정비") # DR0014
+            self.small_div = '3'
+
         else:
             print("\n업무 중분류 코드 : 공공데이터 보유현황 정리 및 메타데이터 등록")  # DR0011
 
@@ -84,56 +91,59 @@ class WEBSYSTEM:
     def total_off_work(self):
         print("\n가상 페이지를 생성합니다...")
         sleep(2)
-        self.url = 'http://dt20chk.hyosungitx.com/main'
-        self.driver = webdriver.Chrome(
+        url = 'http://dt20chk.hyosungitx.com/main'
+        driver = webdriver.Chrome(
             executable_path="webdriver/chromedriver.exe"
         )
-        self.driver.get(self.url)
+        driver.get(url)
 
-        # zero_off_work
+        self.zero_off_work(driver,url)
+        self.first_off_work(driver)
+        self.second_off_work(driver)
+        self.third_off_work(driver)
+        self.end_off_work(driver)
 
-        self.driver.get(self.url)
+    def login(self,driver):
+        driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
+        driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
+        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+
+    def zero_off_work(self,driver,url):
+        driver.get(url)
 
         try:
-            self.driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
-            self.driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
-            self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+            self.login(driver)
             sleep(2)
         except:
-            self.driver.find_element_by_xpath('/html/body/div[3]/button').click()
+            driver.find_element_by_xpath('/html/body/div[3]/button').click()
             sleep(2)
-            self.driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
-            self.driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
-            self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+            self.login(driver)
             sleep(2)
 
-        # first_off_work
-
-        self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+    def first_off_work(self,driver):
+        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
         sleep(2)
 
-        # second_off_work
-
-        self.driver.find_element_by_xpath('//*[@id="selCategory1"]/option[' + self.big_div + ']').click()
-        self.driver.find_element_by_xpath('//*[@id="selCategory2"]/option[' + self.small_div + ']').click()
+    def second_off_work(self,driver):
+        driver.find_element_by_xpath('//*[@id="selCategory1"]/option[' + self.big_div + ']').click()
+        driver.find_element_by_xpath('//*[@id="selCategory2"]/option[' + self.small_div + ']').click()
 
         try:
-            self.driver.find_element_by_xpath('//*[@id="taEtcMemo"]').send_keys(self.content)
+            driver.find_element_by_xpath('//*[@id="taEtcMemo"]').send_keys(self.content)
         except:
             pass
-        self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+
+        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
         sleep(2)
 
-        # third_off_work
-
-        self.driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
-        self.driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
-        self.driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+    def third_off_work(self,driver):
+        driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
+        driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
+        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
         sleep(2)
 
-        # end_off_work
-
-        self.driver.close()
+    def end_off_work(self,driver):
+        driver.close()
         print("*" * 50 + "\n성공적으로 작업이 완료되었습니다")
         print("\n2초 뒤에 프로그램을 종료합니다")
         sleep(2)
@@ -143,27 +153,15 @@ class WEBSYSTEM:
 if __name__ == '__main__':
     print("*" * 50 + "\n공공데이터 청년 인턴십 자동 퇴근 시스템 v0.4 (0.2 → 0.3 → 0.4)\n" + "*" * 50)
     print(" - 만든이 : 부산 남구청\n")
-    print("Special Thanks to 부산 세무과 여러분")
+    print(" - Special Thanks to : 창원 성산구청")
+    print("*" * 50)
 
     person = WEBSYSTEM()
     person.ready_for_act()
-    schedule.every().day.at('18:00').do(person.total_off_work)
+    schedule.every().day.at('17:59:55').do(person.total_off_work)
+    # 17:59:55
 
     while 1:
         print("\n시간을 체크하고 있습니다... 현재 시간 : ", datetime.now())
         schedule.run_pending()
-        sleep(1)
-
-# 향후 해야할 일
-# 분류 체계 접근 및 이용
-# 실측 체계 할 수 있도록 구현
-# small_div 값 변경할 수 있도록
-
-        # if self.big_div == '2':
-        #     print("*" * 50 + '\n해당 업무 소분류 체계는 다음과 같습니다')
-        # elif self.big_div == '3':
-        #     print("*" * 50 + '\n해당 업무 소분류 체계는 다음과 같습니다')
-        # elif self.big_div == '4':
-        #     print("*" * 50 + '\n해당 업무 소분류 체계는 다음과 같습니다')
-        # elif self.big_div == '6':
-        #     print("*" * 50 + '\n해당 업무 소분류 체계는 다음과 같습니다')
+        sleep(0.1)

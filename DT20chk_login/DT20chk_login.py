@@ -48,6 +48,11 @@ class WEBSYSTEM:
             sleep(2)
             exit()
 
+    def login(self,driver):
+        driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
+        driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
+        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
+
     def total_on_work(self):
         print("\n가상 페이지를 생성합니다...")
         sleep(2)
@@ -61,42 +66,53 @@ class WEBSYSTEM:
         # zero_on_work
         try:
             self.login(driver)
-            sleep(5)
+            sleep(3)
         except:
             driver.find_element_by_xpath('/html/body/div[3]/button').click()
-            sleep(5)
+            sleep(3)
             self.login(driver)
-            sleep(5)
+            sleep(3)
 
         # first_on_work
         try:
             driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
             driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
             driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-            sleep(5)
+            sleep(3)
         except:
             pass
 
         # second_on_work
         driver.find_element_by_xpath('//*[@id="js-page-content"]/div/div[1]/div/label').click()
         driver.find_element_by_xpath('//*[@id="js-page-content"]/div/div[2]/div/label').click()
+        sleep(2)
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-        sleep(5)
+        sleep(3)
 
-        # 현재 윗 단계에서 오류 발생생
+        # 현재 윗 단계에서 오류 발생
 
         # thid_on_work
-        if driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label/text()') == '':
-            driver.find_element_by_xpath('//*[@id="rdSurvey13"]').click()
+        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label/text()'))))
+        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label/text()'))))
+        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label/text()'))))
+        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label/text()'))))
 
-        if driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label/text()') == '':
-            driver.find_element_by_xpath('//*[@id="chkSurvey10"]').click()
+        driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label').click()
+        driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label').click()
+        driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label').click()
+        driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label').click()
 
-        if driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label/text()') == '':
-            driver.find_element_by_xpath('//*[@id="rdSurvey33"]').click()
-
-        if driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label/text()') == '':
-            driver.find_element_by_xpath('//*[@id="rdSurvey42"]').click()
+        # if driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label/text()'):
+        #     driver.find_element_by_xpath('//*[@id="rdSurvey13"]').click()
+        #
+        # if driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label/text()'):
+        #     driver.find_element_by_xpath('//*[@id="chkSurvey10"]').click()
+        #
+        # if driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label/text()'):
+        #     driver.find_element_by_xpath('//*[@id="rdSurvey33"]').click()
+        #
+        # if driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label/text()'):
+        #     driver.find_element_by_xpath('//*[@id="rdSurvey42"]').click()
 
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
         sleep(5)
@@ -108,11 +124,6 @@ class WEBSYSTEM:
         sleep(5)
 
         exit()
-
-    def login(self,driver):
-        driver.find_element_by_xpath('//*[@id="iptUser_id"]').send_keys(self.ID)
-        driver.find_element_by_xpath('//*[@id="iptUser_pass"]').send_keys(self.password)
-        driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
 
 if __name__ == '__main__':
     print("*" * 50 + "\n공공데이터 청년 인턴십 자동 출근 시스템 v0.4\n" + "*" * 50)

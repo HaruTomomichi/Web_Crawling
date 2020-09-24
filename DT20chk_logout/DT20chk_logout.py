@@ -139,6 +139,8 @@ class WEBSYSTEM:
     def third_off_work(self,driver):
         driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
         driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        sleep(2)
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
         sleep(2)
 
@@ -151,7 +153,7 @@ class WEBSYSTEM:
         sys.exit()
 
 if __name__ == '__main__':
-    print("*" * 50 + "\n공공데이터 청년 인턴십 자동 퇴근 시스템 v0.4 (0.2 → 0.3 → 0.4)\n" + "*" * 50)
+    print("*" * 50 + "\n공공데이터 청년 인턴십 자동 퇴근 시스템 v0.5 (0.2 → 0.3 → 0.4 → 0.5)\n" + "*" * 50)
     print(" - 만든이 : 부산 남구청\n")
     print(" - Special Thanks to : 창원 성산구청")
     print("*" * 50)
@@ -164,4 +166,4 @@ if __name__ == '__main__':
     while 1:
         print("\n시간을 체크하고 있습니다... 현재 시간 : ", datetime.now())
         schedule.run_pending()
-        sleep(0.1)
+        sleep(0.5)

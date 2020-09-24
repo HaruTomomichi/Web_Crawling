@@ -3,8 +3,6 @@ from sys import exit
 from time import sleep
 from selenium import webdriver
 
-# 각 코로나 검사 항목과 일치하는 지 여부 검사
-
 class WEBSYSTEM:
     def __init__(self):
         self.ID = "기본"
@@ -66,56 +64,53 @@ class WEBSYSTEM:
         # zero_on_work
         try:
             self.login(driver)
-            sleep(3)
+            sleep(2)
         except:
             driver.find_element_by_xpath('/html/body/div[3]/button').click()
-            sleep(3)
+            sleep(2)
             self.login(driver)
-            sleep(3)
+            sleep(2)
 
         # first_on_work
         try:
             driver.find_element_by_xpath('//*[@id="iptUserName1"]').send_keys(self.name)
             driver.find_element_by_xpath('//*[@id="iptUserName2"]').send_keys(self.name)
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            sleep(2)
             driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-            sleep(3)
+            sleep(2)
         except:
             pass
 
         # second_on_work
         driver.find_element_by_xpath('//*[@id="js-page-content"]/div/div[1]/div/label').click()
         driver.find_element_by_xpath('//*[@id="js-page-content"]/div/div[2]/div/label').click()
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(2)
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-        sleep(3)
+        sleep(2)
 
-        # 현재 윗 단계에서 오류 발생
+        # third_on_work
 
-        # thid_on_work
-        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label/text()'))))
-        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label/text()'))))
-        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label/text()'))))
-        # print(str((driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label/text()'))))
+        if driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label').text == '03. 아니오':
+            driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label').click()
 
-        driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label').click()
-        driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label').click()
-        driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label').click()
-        driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label').click()
+        driver.execute_script("window.scroll(0, 50);")
+        if driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label').text == '09. 방문하지 않음':
+            driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label').click()
 
-        # if driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label/text()'):
-        #     driver.find_element_by_xpath('//*[@id="rdSurvey13"]').click()
-        #
-        # if driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label/text()'):
-        #     driver.find_element_by_xpath('//*[@id="chkSurvey10"]').click()
-        #
-        # if driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label/text()'):
-        #     driver.find_element_by_xpath('//*[@id="rdSurvey33"]').click()
-        #
-        # if driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label/text()'):
-        #     driver.find_element_by_xpath('//*[@id="rdSurvey42"]').click()
+        driver.execute_script("window.scroll(0, 100);")
+        if driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label').text == '03. 방문한 적 없습니다.':
+            driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label').click()
 
+        driver.execute_script("window.scroll(0, 150);")
+        if driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label').text == '02. 아니오, 증상이 없습니다.':
+            driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label').click()
+        
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        sleep(2)
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
-        sleep(5)
+        sleep(2)
 
         # end_off_work
         driver.close()
@@ -126,7 +121,7 @@ class WEBSYSTEM:
         exit()
 
 if __name__ == '__main__':
-    print("*" * 50 + "\n공공데이터 청년 인턴십 자동 출근 시스템 v0.4\n" + "*" * 50)
+    print("*" * 50 + "\n공공데이터 청년 인턴십 자동 출근 시스템 v0.5\n" + "*" * 50)
     print(" - 만든이 : 부산 남구청\n")
     print(" - Special Thanks to : 창원 성산구청")
     print("*" * 50)

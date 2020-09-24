@@ -22,6 +22,7 @@
     <list default="true" id="678958f1-c237-43c3-87fc-de4039b480e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DT20chk_login.py" beforeDir="false" afterPath="$PROJECT_DIR$/DT20chk_login.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../DT20chk_logout/DT20chk_logout.py" beforeDir="false" afterPath="$PROJECT_DIR$/../DT20chk_logout/DT20chk_logout.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +40,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/workshop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../DT20chk_logout" />
   </component>
   <component name="RunManager">
     <configuration name="DT20chk_login" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -93,25 +94,41 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1600733155996">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1600905814489">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600733155996" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1600732612190">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1600905814489" />
+    <state width="1515" height="312" key="GridCell.Tab.0.bottom" timestamp="1600905758271">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600732612190" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1600732612190">
+    <state width="1515" height="312" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.0.center" timestamp="1600905758271">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600732612190" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1600732612190">
+    <state width="1515" height="312" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.0.left" timestamp="1600905758271">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600732612190" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1600732612190">
+    <state width="1515" height="312" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.0.right" timestamp="1600905758271">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600732612190" />
+    <state width="1515" height="312" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.1.bottom" timestamp="1600905758271">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="312" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.1.center" timestamp="1600905758271">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="312" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.1.left" timestamp="1600905758271">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="312" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
+    <state width="1515" height="312" key="GridCell.Tab.1.right" timestamp="1600905758271">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="312" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1600905758271" />
   </component>
 </project>

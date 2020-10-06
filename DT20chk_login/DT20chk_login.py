@@ -94,21 +94,28 @@ class WEBSYSTEM:
 
         if driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label').text == '03. 아니오':
             driver.find_element_by_xpath('//*[@id="divSurvey1"]/div/div[3]/label').click()
+        sleep(1)
 
-        driver.execute_script("window.scroll(0, 50);")
+        driver.execute_script("window.scroll(0, 300);")
+        sleep(1)
         if driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label').text == '09. 방문하지 않음':
             driver.find_element_by_xpath('//*[@id="divSurvey2"]/div/div[10]/label').click()
+        sleep(1)
 
-        driver.execute_script("window.scroll(0, 100);")
+        driver.execute_script("window.scroll(0, 600);")
+        sleep(1)
         if driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label').text == '03. 방문한 적 없습니다.':
             driver.find_element_by_xpath('//*[@id="divSurvey3"]/div/div[3]/label').click()
+        sleep(1)
 
-        driver.execute_script("window.scroll(0, 150);")
+        driver.execute_script("window.scroll(0, 900);")
+        sleep(1)
         if driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label').text == '02. 아니오, 증상이 없습니다.':
             driver.find_element_by_xpath('//*[@id="divSurvey4"]/div/div[2]/label').click()
+        sleep(1)
         
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(2)
+        sleep(1)
         driver.find_element_by_xpath('//*[@id="btnSubmit"]').click()
         sleep(2)
 
